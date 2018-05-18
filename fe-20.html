@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>fe-20</title>
+        <meta charset="UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    </head>
+    <body>
+        <input name="miestas" placeholder="Savivaldybė/miestas">
+        <input name="gatve" placeholder="Gatvė">
+        <input name="numeris" placeholder="Namo numeris">
+        <button onclick="pastoIndeksas()">Saugoti</button>
+        <main>
+        </main>
+        <script>
+            function pastoIndeksas() {
+                var miestas = $('input[name="miestas"]').val();
+                var gatve = $('input[name="gatve"]').val();
+                var numeris = $('input[name="numeris"]').val();
+                $.get('https://postit.lt/data',{'address': gatve+ ' ' +numeris+ ', ' +miestas}, function(atsakymas) {
+                    $('main').html('Pašto indeksas: ' +atsakymas.data[0].post_code);   
+                });
+            }
+        </script>
+    </body>
+</html>
